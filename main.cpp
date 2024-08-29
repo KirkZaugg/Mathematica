@@ -2,7 +2,8 @@
 #include<math.h>
 
 int mainGame(int gamenum) {
-    for(gamenum > 0; gamenum--) {
+    for(; gamenum > 0; gamenum--) {
+        char operation = std::rand() % 5;        //0 = addition; 1 = subtraction; 2 = multiplication; 3 = division; 4 = modulus
         
     }
 }
@@ -20,5 +21,7 @@ void gameStart() {
 }
 
 int main() {
+    std::srand(time(0));
     gameStart();
+    return 0;
 }
