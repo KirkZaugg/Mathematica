@@ -2,10 +2,10 @@
 #include<math.h>
 #include<time.h>
 
-std::string checkInput(double ans, int score) {
+std::string checkInput(double ans, int* score) {
     double input = 0;
     std::cin >> input;
-    if(ans == input) {score++;}
+    if(ans == input) {*score++;}
     std::string response = (ans == input) ? "That is correct!\n" : "That is incorrect!\n";
     return response;
 }
@@ -43,7 +43,7 @@ void mainGame(int gamenum) {
                 std::cout << "You done messed up.\n";
         }
         std::cout << "What is " << a << " " << operation << " " << b << "? ";
-        int &scoreref = score;
+        int* scoreref = &score;
         std::cout << checkInput(c, scoreref);
         std::cout << "Your score is " << score << "\n";
         std::cout << "You have " << gamenum - 1 << " games left\n";
