@@ -2,18 +2,22 @@
 #include<math.h>
 #include<time.h>
 
-checkInput(double ans) {
-    std::cin >> double input;
-    return (input == ans);
+std::string checkInput(double ans, int score) {
+    double input = 0;
+    std::cin >> input;
+    if(ans == input) {score++;}
+    std::string response = (ans == input) ? "That is correct!\n" : "That is incorrect!\n";
+    return response;
 }
 
-int mainGame(int gamenum) {
+void mainGame(int gamenum) {
+    int score = 0;
     for(; gamenum > 0; gamenum--) {
         char operation = std::rand() % 5;        //0 = addition; 1 = subtraction; 2 = multiplication; 3 = division; 4 = modulus
         int a = std::rand() % 100;
         int b = std::rand() % 100;
         double c = 0;
-        switch operation {
+        switch (operation) {
             case 0:
                 c = a + b;
                 operation = '+';
@@ -27,6 +31,7 @@ int mainGame(int gamenum) {
                 operation = '*';
                 break;
             case 3:
+                while (b == 0) { b = std::rand() % 100; }
                 c = a / b;
                 operation = '/';
                 break;
@@ -38,12 +43,12 @@ int mainGame(int gamenum) {
                 std::cout << "You done messed up.\n";
         }
         std::cout << "What is " << a << " " << operation << " " << b << "? ";
-        if(checkInput(c)) {
-            std::cout << "That is correct!\n";
-        } else {
-            std::cout << "That is incorrect!\n";
-        }
+        int &scoreref = score;
+        std::cout << checkInput(c, scoreref);
+        std::cout << "Your score is " << score << "\n";
+        std::cout << "You have " << gamenum - 1 << " games left\n";
     }
+    return;
 }
 
 void gameStart() {
