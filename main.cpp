@@ -5,7 +5,7 @@
 std::string checkInput(double ans, int* score) {
     double input = 0;
     std::cin >> input;
-    if(ans == input) {*score++;}
+    if(ans == input) {*score = *score + 1;}
     std::string response = (ans == input) ? "That is correct!\n" : "That is incorrect!\n";
     return response;
 }
